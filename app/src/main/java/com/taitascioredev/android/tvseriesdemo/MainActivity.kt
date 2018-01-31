@@ -32,19 +32,27 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        supportFragmentManager.addOnBackStackChangedListener {
+        addBackStackListener()
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.container, ShowsListFragment()).commit()
+        } else {
             if (supportFragmentManager.backStackEntryCount > 0) {
                 enableUpNavigation()
             } else {
                 disableUpNavigation()
             }
         }
+    }
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.container, ShowsListFragment()).commit()
-        } else {
-            enableUpNavigation()
+    private fun addBackStackListener() {
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount > 0) {
+                enableUpNavigation()
+            } else {
+                disableUpNavigation()
+            }
         }
     }
 
