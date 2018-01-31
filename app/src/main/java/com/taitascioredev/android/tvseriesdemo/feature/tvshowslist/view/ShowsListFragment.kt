@@ -18,6 +18,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewmodel.Sho
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewstate.ShowsListViewState
 import com.taitascioredev.android.tvseriesdemo.presentation.view.BaseFragment
 import com.taitascioredev.android.tvseriesdemo.util.baseActivity
+import com.taitascioredev.android.tvseriesdemo.util.snackbar
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_list.*
@@ -71,8 +72,10 @@ class ShowsListFragment : BaseFragment<ShowsListIntent, ShowsListViewState>() {
             .doOnNext { isListUpdating = true }
             .flatMap { Observable.just(ShowsListIntent.LoadIntent()) }
 
+    private fun retryIntent() = RxView.clicks(btn_retry).map { ShowsListIntent.LoadIntent() }
+
     override fun intents(): Observable<ShowsListIntent> {
-        return Observable.merge(initialIntent(), loadIntent())
+        return Observable.merge(initialIntent(), loadIntent(), retryIntent())
     }
 
     override fun render(state: ShowsListViewState) {
@@ -82,24 +85,30 @@ class ShowsListFragment : BaseFragment<ShowsListIntent, ShowsListViewState>() {
 
         when {
             state.loading && !isListUpdating -> renderLoading()
-            state.shows != null -> renderShows(state.shows!!)
-            state.error != null -> {}
+            state.shows != null -> renderShows(state.shows)
+            state.error != null -> renderError(state.error)
         }
     }
 
     private fun renderLoading() {
         progress_wheel.visibility = View.VISIBLE
+        btn_retry.visibility = View.GONE
     }
 
     private fun renderShows(shows: List<MovieDbTvShow>) {
-        progress_wheel.visibility = View.GONE
         list.visibility = View.VISIBLE
+        progress_wheel.visibility = View.GONE
+        btn_retry.visibility = View.GONE
         adapter.add(shows)
     }
 
     private fun renderError(error: Throwable) {
+        if (adapter.itemCount == 0) {
+            btn_retry.visibility = View.VISIBLE
+        } else {
+            snackbar(activity.findViewById(R.id.main_content), getString(R.string.error))
+        }
         progress_wheel.visibility = View.GONE
-        list.visibility = View.GONE
     }
 
     private fun handleClickOnItem(show: MovieDbTvShow) {
