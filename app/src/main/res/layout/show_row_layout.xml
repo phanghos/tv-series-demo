@@ -10,7 +10,13 @@
         android:layout_height="275dp"
         android:layout_marginBottom="8dp"
         fresco:fadeDuration="300"
-        fresco:actualImageScaleType="fitXY" />
+        fresco:actualImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/placeholder"
+        fresco:placeholderImageScaleType="focusCrop"
+        fresco:failureImage="@drawable/placeholder"
+        fresco:failureImageScaleType="focusCrop"
+        fresco:retryImage="@drawable/placeholder"
+        fresco:retryImageScaleType="focusCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
