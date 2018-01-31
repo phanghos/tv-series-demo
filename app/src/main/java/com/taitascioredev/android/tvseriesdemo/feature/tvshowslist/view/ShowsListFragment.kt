@@ -2,7 +2,6 @@ package com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.view
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +9,14 @@ import android.view.ViewGroup
 import com.jakewharton.rxbinding2.support.v7.widget.RxRecyclerView
 import com.jakewharton.rxbinding2.view.RxView
 import com.taitascioredev.android.tvseriesdemo.R
+import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.view.ShowDetailsFragment
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.ShowsListIntent
-import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.view.adapter.MovieDbShowAdapter
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewmodel.ShowsListViewModel
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewmodel.ShowsListViewModelFactory
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewstate.ShowsListViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
+import com.taitascioredev.android.tvseriesdemo.presentation.view.BaseFragment
 import com.taitascioredev.android.tvseriesdemo.util.baseActivity
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
@@ -28,7 +27,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 25/01/18.
  */
-class ShowsListFragment : Fragment(), BaseView<ShowsListIntent, ShowsListViewState> {
+class ShowsListFragment : BaseFragment<ShowsListIntent, ShowsListViewState>() {
 
     private var isListUpdating = false
 
@@ -39,8 +38,6 @@ class ShowsListFragment : Fragment(), BaseView<ShowsListIntent, ShowsListViewSta
     }
 
     private var adapter = MovieDbShowAdapter()
-
-    private val disposables = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         AndroidSupportInjection.inject(this)
@@ -55,22 +52,10 @@ class ShowsListFragment : Fragment(), BaseView<ShowsListIntent, ShowsListViewSta
         viewModel.processIntents(intents())
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        disposables.clear()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (!disposables.isDisposed) {
-            disposables.dispose()
-        }
-    }
-
     private fun bindUiEvents() {
-        disposables.add(RxView.clicks(activity.findViewById(R.id.toolbar)).subscribe { list.smoothScrollToPosition(0) })
-        disposables.add(adapter.getClickObservable().subscribe { handleClickOnItem(it) })
-        disposables.add(viewModel.states().subscribe { render(it) })
+        addDisposable(RxView.clicks(activity.findViewById(R.id.toolbar)).subscribe { list.smoothScrollToPosition(0) })
+        addDisposable(adapter.getClickObservable().subscribe { handleClickOnItem(it) })
+        addDisposable(viewModel.states().subscribe { render(it) })
     }
 
     private fun initialIntent() = Observable.just(ShowsListIntent.InitialIntent())

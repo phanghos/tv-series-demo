@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.taitascioredev.android.tvseriesdemo.R
+import com.taitascioredev.android.tvseriesdemo.R.id.*
 import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.SearchTvShowsIntent
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel.SearchTvShowsViewModel
@@ -19,6 +20,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel.S
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewstate.SearchTvShowsViewState
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.view.adapter.MovieDbShowAdapter
 import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
+import com.taitascioredev.android.tvseriesdemo.presentation.view.BaseActivity
 import com.taitascioredev.android.tvseriesdemo.util.enableUpNavigation
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -33,7 +35,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 30/01/18.
  */
-class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent, SearchTvShowsViewState>, HasActivityInjector {
+class SearchResultsActivity : BaseActivity<SearchTvShowsIntent, SearchTvShowsViewState>(), HasActivityInjector {
 
     override fun activityInjector(): AndroidInjector<Activity> {
         return injector
@@ -50,8 +52,6 @@ class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent,
     }
 
     private val adapter = MovieDbShowAdapter()
-
-    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,13 +76,6 @@ class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent,
         viewModel.reset()
         viewModel.processIntents(intents())
         bindUiEvents()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (!disposables.isDisposed) {
-            disposables.isDisposed
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -116,7 +109,7 @@ class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent,
     }
 
     private fun bindUiEvents() {
-        disposables.add(viewModel.states().subscribe { render(it) })
+        addDisposable(viewModel.states().subscribe { render(it) })
     }
 
     private fun initialIntent(): Observable<SearchTvShowsIntent> = Observable.just(SearchTvShowsIntent.InitialIntent(query))

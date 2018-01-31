@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +12,15 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.support.v7.widget.RxRecyclerView
 import com.jakewharton.rxbinding2.view.RxView
 import com.taitascioredev.android.tvseriesdemo.R
+import com.taitascioredev.android.tvseriesdemo.R.id.btn_retry
+import com.taitascioredev.android.tvseriesdemo.R.id.list
 import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.ShowDetailsIntent
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.view.adapter.SimilarShowAdapter
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewmodel.ShowDetailsViewModel
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewmodel.ShowDetailsViewModelFactory
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewstate.ShowDetailsViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
+import com.taitascioredev.android.tvseriesdemo.presentation.view.BaseFragment
 import com.taitascioredev.android.tvseriesdemo.util.baseActivity
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
@@ -30,7 +31,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 26/01/18.
  */
-class ShowDetailsFragment : Fragment(), BaseView<ShowDetailsIntent, ShowDetailsViewState> {
+class ShowDetailsFragment : BaseFragment<ShowDetailsIntent, ShowDetailsViewState>() {
 
     companion object {
 
@@ -57,8 +58,6 @@ class ShowDetailsFragment : Fragment(), BaseView<ShowDetailsIntent, ShowDetailsV
 
     private var adapter = SimilarShowAdapter()
 
-    private val disposables = CompositeDisposable()
-
     private var loadingDialog: LoadingDialogFragment? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -79,21 +78,9 @@ class ShowDetailsFragment : Fragment(), BaseView<ShowDetailsIntent, ShowDetailsV
     }
 
     private fun bindUiEvents() {
-        disposables.add(RxView.clicks(tv_show_overview).subscribe { tv_show_overview.text = show.overview })
-        disposables.add(adapter.getClickObservable().subscribe { handleClickOnItem(it) })
-        disposables.add(viewModel.states().subscribe { render(it) })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        disposables.clear()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (!disposables.isDisposed) {
-            disposables.dispose()
-        }
+        addDisposable(RxView.clicks(tv_show_overview).subscribe { tv_show_overview.text = show.overview })
+        addDisposable(adapter.getClickObservable().subscribe { handleClickOnItem(it) })
+        addDisposable(viewModel.states().subscribe { render(it) })
     }
 
     private fun initialIntent() = Observable.just(ShowDetailsIntent.InitialIntent(show.id!!))
