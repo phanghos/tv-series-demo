@@ -30,4 +30,16 @@
         android:text="@string/retry"
         style="?android:attr/borderlessButtonStyle"/>
 
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/btn_retry"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:text="@string/error" />
+
 </RelativeLayout>
