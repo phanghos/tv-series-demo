@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TV Series Demo</string>
+    <string name="popular_shows">Popular TV Shows</string>
     <string name="loading">Loading... Please wait...</string>
 </resources>

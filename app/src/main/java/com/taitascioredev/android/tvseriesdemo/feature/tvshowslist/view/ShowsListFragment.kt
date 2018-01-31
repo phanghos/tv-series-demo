@@ -45,7 +45,7 @@ class ShowsListFragment : BaseFragment<ShowsListIntent, ShowsListViewState>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        baseActivity.supportActionBar?.title = "Popular TV Shows"
+        baseActivity.supportActionBar?.title = getString(R.string.popular_shows)
         bindUiEvents()
         list.adapter = adapter
         viewModel.processIntents(intents())
