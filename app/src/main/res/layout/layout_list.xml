@@ -20,4 +20,14 @@
         wheel:matProg_barColor="@color/colorPrimary"
         wheel:matProg_progressIndeterminate="true" />
 
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/retry"
+        style="?android:attr/borderlessButtonStyle"/>
+
 </RelativeLayout>
