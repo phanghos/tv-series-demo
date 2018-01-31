@@ -13,9 +13,8 @@
 
 The architecture has been based on this series on state management with RxJava by Square's Jake Wharton http://jakewharton.com/the-state-of-managing-state-with-rxjava/
 
-#### Note
-Different names have been given to this approach / architecture. Some have called it Redux, while others refer to it as MVI (**M**odel-**V**iew-**Intent**), since this pattern seems to have been inspired on a JS framework. Others simply refer to it as a fully reactive approach with MVVM thanks to RxJava
+#### Notes
 
-#### Note 2
+- Different names have been given to this approach / architecture. Some have called it Redux, while others refer to it as MVI (**M**odel-**V**iew-**Intent**), since this pattern seems to have been inspired on a JS framework. Others simply refer to it as a fully reactive approach with MVVM thanks to RxJava
 
-I took the time to implement a simple search functionality as an extra feature. I am aware that this was not requested but it seemed like a nice extra. **This has not been unit tested**
+- I took the time to implement a simple search functionality as an extra feature. I am aware that this was not requested but it seemed like a nice extra. **This has not been unit tested**
