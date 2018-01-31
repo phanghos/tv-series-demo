@@ -1,7 +1,10 @@
 package com.taitascioredev.android.tvseriesdemo.util
 
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 
 /**
  * Created by rrtatasciore on 27/01/18.
@@ -23,4 +26,12 @@ fun AppCompatActivity.disableUpNavigation() {
         actionBar.setDisplayShowHomeEnabled(false)
         actionBar.setDisplayHomeAsUpEnabled(false)
     }
+}
+
+fun AppCompatActivity.snackbar(v: View, msg: String, duration: Int = Snackbar.LENGTH_SHORT) {
+    Snackbar.make(v, msg, duration).show()
+}
+
+fun Fragment.snackbar(v: View, msg: String, duration: Int = Snackbar.LENGTH_SHORT) {
+    Snackbar.make(v, msg, duration).show()
 }
