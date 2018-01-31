@@ -1,12 +1,10 @@
 package com.taitascioredev.android.tvseriesdemo.data.repository.impl
 
-import com.taitascioredev.android.tvseriesdemo.R.id.list
 import com.taitascioredev.android.tvseriesdemo.data.entity.mapper.ShowsListMapper
 import com.taitascioredev.android.tvseriesdemo.data.net.MovieDbService
 import com.taitascioredev.android.tvseriesdemo.data.repository.MovieRepository
 import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
 import io.reactivex.Observable
-import java.util.*
 import javax.inject.Inject
 
 /**

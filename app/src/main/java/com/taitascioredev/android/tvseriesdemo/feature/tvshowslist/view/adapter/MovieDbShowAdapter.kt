@@ -21,10 +21,6 @@ import io.reactivex.subjects.PublishSubject
  */
 class MovieDbShowAdapter : RecyclerView.Adapter<MovieDbShowAdapter.ShowViewHolder>() {
 
-    companion object {
-        private val IMG_BASE_URL = "http://image.tmdb.org/t/p/w342"
-    }
-
     private val shows: List<MovieDbTvShow>
 
     private val clickSubject = PublishSubject.create<MovieDbTvShow>()
@@ -46,7 +42,7 @@ class MovieDbShowAdapter : RecyclerView.Adapter<MovieDbShowAdapter.ShowViewHolde
         val show = shows[position]
         holder?.let {
             with (holder) {
-                showPosterImg.setImageURI(IMG_BASE_URL + show.posterPath)
+                showPosterImg.setImageURI("http://image.tmdb.org/t/p/w342/${show.posterPath}")
                 showName.text = show.name
                 showVoteAvg.text = "Vote avg: ${show.voteAverage.toString()}"
                 showVoteCount.text = "Vote count: ${show.voteCount.toString()}"

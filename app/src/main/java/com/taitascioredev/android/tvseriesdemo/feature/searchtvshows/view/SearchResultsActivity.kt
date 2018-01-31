@@ -41,8 +41,6 @@ class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent,
 
     private lateinit var query: String
 
-    private var isListUpdating = false
-
     @Inject lateinit var factory: SearchTvShowsViewModelFactory
 
     @Inject lateinit var injector: DispatchingAndroidInjector<Activity>
@@ -78,6 +76,13 @@ class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent,
         viewModel.reset()
         viewModel.processIntents(intents())
         bindUiEvents()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!disposables.isDisposed) {
+            disposables.isDisposed
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -121,12 +126,8 @@ class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent,
     }
 
     override fun render(state: SearchTvShowsViewState) {
-        if (!state.loading) {
-            isListUpdating = false
-        }
-
         when {
-            state.loading && !isListUpdating -> renderLoading()
+            state.loading-> renderLoading()
             state.shows != null -> renderResults(state.shows)
             state.error != null -> renderError(state.error)
         }

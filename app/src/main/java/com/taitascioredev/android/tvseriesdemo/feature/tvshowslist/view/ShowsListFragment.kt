@@ -30,10 +30,6 @@ import javax.inject.Inject
  */
 class ShowsListFragment : Fragment(), BaseView<ShowsListIntent, ShowsListViewState> {
 
-    companion object {
-        private val TAG = ShowsListFragment::class.java.simpleName
-    }
-
     private var isListUpdating = false
 
     @Inject lateinit var factory: ShowsListViewModelFactory

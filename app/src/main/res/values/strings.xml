@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TV Series Demo</string>
+    <string name="loading">Loading... Please wait...</string>
 </resources>

@@ -20,10 +20,6 @@ class SimilarShowAdapter : RecyclerView.Adapter<SimilarShowAdapter.SimilarShowVi
 
     private val clickSubject = PublishSubject.create<MovieDbTvShow>()
 
-    companion object {
-        private val IMG_BASE_URL = "http://image.tmdb.org/t/p/w342"
-    }
-
     init {
         shows = ArrayList()
     }
@@ -39,7 +35,7 @@ class SimilarShowAdapter : RecyclerView.Adapter<SimilarShowAdapter.SimilarShowVi
 
     override fun onBindViewHolder(holder: SimilarShowViewHolder?, position: Int) {
         val show = shows[position]
-        holder?.showImg?.setImageURI(IMG_BASE_URL + show.posterPath)
+        holder?.showImg?.setImageURI("http://image.tmdb.org/t/p/w342/${show.posterPath}")
     }
 
     fun add(newList: List<MovieDbTvShow>) {

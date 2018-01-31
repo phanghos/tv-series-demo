@@ -5,4 +5,4 @@ import com.taitascioredev.android.tvseriesdemo.presentation.base.Action
 /**
  * Created by rrtatasciore on 25/01/18.
  */
-data class ShowDetailsAction(val showId: Int) : Action
+class ShowDetailsAction(val showId: Int) : Action
