@@ -93,20 +93,24 @@ class ShowsListFragment : BaseFragment<ShowsListIntent, ShowsListViewState>() {
     private fun renderLoading() {
         progress_wheel.visibility = View.VISIBLE
         btn_retry.visibility = View.GONE
+        tv_error.visibility = View.GONE
     }
 
     private fun renderShows(shows: List<MovieDbTvShow>) {
         list.visibility = View.VISIBLE
         progress_wheel.visibility = View.GONE
         btn_retry.visibility = View.GONE
+        tv_error.visibility = View.GONE
         adapter.add(shows)
     }
 
     private fun renderError(error: Throwable) {
         if (adapter.itemCount == 0) {
             btn_retry.visibility = View.VISIBLE
+            tv_error.visibility = View.VISIBLE
         } else {
             snackbar(activity.findViewById(R.id.main_content), getString(R.string.error))
+            tv_error.visibility = View.GONE
         }
         progress_wheel.visibility = View.GONE
     }

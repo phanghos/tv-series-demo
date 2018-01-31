@@ -152,10 +152,13 @@ class ShowDetailsFragment : BaseFragment<ShowDetailsIntent, ShowDetailsViewState
 
     private fun renderError(error: Throwable) {
         Snackbar.make(activity.findViewById(R.id.main_content), "Something went wrong", Snackbar.LENGTH_SHORT).show()
-        btn_retry.visibility = View.VISIBLE
+        if (adapter.itemCount == 0) {
+            btn_retry.visibility = View.VISIBLE
+        } else {
+            btn_retry.visibility = View.GONE
+        }
         loadingDialog?.dismiss()
         loadingDialog = null
-        list.visibility = View.GONE
     }
 
     private fun handleClickOnItem(show: MovieDbTvShow) {
