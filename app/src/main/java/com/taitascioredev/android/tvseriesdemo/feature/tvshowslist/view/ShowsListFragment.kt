@@ -20,8 +20,7 @@ import com.taitascioredev.android.tvseriesdemo.presentation.view.BaseFragment
 import com.taitascioredev.android.tvseriesdemo.util.baseActivity
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_shows_list.*
+import kotlinx.android.synthetic.main.layout_list.*
 import javax.inject.Inject
 
 /**
@@ -41,7 +40,7 @@ class ShowsListFragment : BaseFragment<ShowsListIntent, ShowsListViewState>() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         AndroidSupportInjection.inject(this)
-        return inflater?.inflate(R.layout.fragment_shows_list, container, false)
+        return inflater?.inflate(R.layout.layout_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
