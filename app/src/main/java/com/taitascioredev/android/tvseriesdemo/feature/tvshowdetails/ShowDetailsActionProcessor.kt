@@ -20,7 +20,7 @@ class ShowDetailsActionProcessor @Inject constructor(private val useCase: GetSim
         return ObservableTransformer { action ->
             action.map { it }
                     .flatMap {
-                        useCase.getSimilarTvShows(it.showId(), currentPage)
+                        useCase.getSimilarTvShows(it.showId, currentPage)
                                 .map {
                                     currentPage++
                                     mergeResults(it)

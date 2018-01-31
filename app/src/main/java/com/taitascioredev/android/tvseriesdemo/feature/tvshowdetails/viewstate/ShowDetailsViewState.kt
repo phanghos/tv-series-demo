@@ -1,24 +1,19 @@
 package com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewstate
 
-import com.google.auto.value.AutoValue
 import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
 import com.taitascioredev.android.tvseriesdemo.presentation.base.ViewState
 
 /**
  * Created by rrtatasciore on 25/01/18.
  */
-@AutoValue
-abstract class ShowDetailsViewState : ViewState {
-
-    abstract fun loading(): Boolean
-
-    abstract fun similarShows(): List<MovieDbTvShow>?
-
-    abstract fun error(): Throwable?
-
+data class ShowDetailsViewState(
+        val loading: Boolean,
+        val similarShows: List<MovieDbTvShow>?,
+        val error: Throwable?
+) : ViewState {
     companion object {
         fun create(loading: Boolean, similarShows: List<MovieDbTvShow>?, error: Throwable?): ShowDetailsViewState {
-            return AutoValue_ShowDetailsViewState(loading, similarShows, error)
+            return ShowDetailsViewState(loading, similarShows, error)
         }
         fun idle() = create(false, null,null)
         fun success(similarShows: List<MovieDbTvShow>) = create(false, similarShows, null)

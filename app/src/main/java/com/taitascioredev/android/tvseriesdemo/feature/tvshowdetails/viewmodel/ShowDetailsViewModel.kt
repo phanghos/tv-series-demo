@@ -42,8 +42,8 @@ class ShowDetailsViewModel(
 
     private fun actionFromIntent(intent: ShowDetailsIntent): ShowDetailsAction {
         return when (intent) {
-            is ShowDetailsIntent.InitialIntent -> ShowDetailsAction.create(intent.showId())
-            is ShowDetailsIntent.LoadIntent -> ShowDetailsAction.create(intent.showId())
+            is ShowDetailsIntent.InitialIntent -> ShowDetailsAction(intent.showId)
+            is ShowDetailsIntent.LoadIntent -> ShowDetailsAction(intent.showId)
             else -> throw IllegalArgumentException("unknown intent")
         }
     }

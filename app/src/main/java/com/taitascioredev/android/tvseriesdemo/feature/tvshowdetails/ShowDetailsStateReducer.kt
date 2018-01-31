@@ -10,9 +10,9 @@ import javax.inject.Inject
  */
 class ShowDetailsStateReducer @Inject constructor() : BiFunction<ShowDetailsViewState, ShowDetailsResult, ShowDetailsViewState> {
     override fun apply(state: ShowDetailsViewState, result: ShowDetailsResult): ShowDetailsViewState {
-        return when (result.status()) {
-            LceStatus.SUCCESS -> ShowDetailsViewState.success(result.similarShows()!!)
-            LceStatus.ERROR -> ShowDetailsViewState.error(result.error()!!)
+        return when (result.status) {
+            LceStatus.SUCCESS -> ShowDetailsViewState.success(result.similarShows!!)
+            LceStatus.ERROR -> ShowDetailsViewState.error(result.error!!)
             LceStatus.IN_FLIGHT -> ShowDetailsViewState.inFlight()
         }
     }

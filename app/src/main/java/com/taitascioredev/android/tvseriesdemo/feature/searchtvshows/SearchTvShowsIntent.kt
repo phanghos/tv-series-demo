@@ -7,7 +7,7 @@ import com.taitascioredev.android.tvseriesdemo.presentation.base.Intent
  */
 interface SearchTvShowsIntent : Intent {
 
-    data class InitialIntent(val query: String) : SearchTvShowsIntent
+    class InitialIntent(val query: String) : SearchTvShowsIntent
 
-    data class LoadIntent(val query: String) : SearchTvShowsIntent
+    class LoadIntent(val query: String) : SearchTvShowsIntent
 }

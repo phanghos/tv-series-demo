@@ -96,7 +96,7 @@ class ShowDetailsFragment : Fragment(), BaseView<ShowDetailsIntent, ShowDetailsV
         }
     }
 
-    private fun initialIntent() = Observable.just(ShowDetailsIntent.InitialIntent.create(show.id!!))
+    private fun initialIntent() = Observable.just(ShowDetailsIntent.InitialIntent(show.id!!))
 
     private fun loadIntent() = RxRecyclerView.scrollEvents(list)
             .filter {
@@ -108,26 +108,26 @@ class ShowDetailsFragment : Fragment(), BaseView<ShowDetailsIntent, ShowDetailsV
                 visibleItemCount + pastVisibleItems + 3 >= totalItemCount && !isListUpdating
             }
             .doOnNext { isListUpdating = true }
-            .flatMap { Observable.just(ShowDetailsIntent.LoadIntent.create(show.id!!)) }
+            .flatMap { Observable.just(ShowDetailsIntent.LoadIntent(show.id!!)) }
 
-    private fun retryIntent() = RxView.clicks(btn_retry).map { ShowDetailsIntent.LoadIntent.create(show.id!!) }
+    private fun retryIntent() = RxView.clicks(btn_retry).map { ShowDetailsIntent.LoadIntent(show.id!!) }
 
     override fun intents(): Observable<ShowDetailsIntent> {
         return Observable.merge(initialIntent(), loadIntent(), retryIntent())
     }
 
     override fun render(state: ShowDetailsViewState) {
-        if (!state.loading()) {
+        if (!state.loading) {
             isListUpdating = false
         }
 
         when {
-            state.loading() -> renderLoading()
-            state.similarShows() != null -> {
-                if (state.similarShows()!!.isNotEmpty()) renderShows(state.similarShows()!!)
+            state.loading -> renderLoading()
+            state.similarShows != null -> {
+                if (state.similarShows!!.isNotEmpty()) renderShows(state.similarShows!!)
                 else renderEmpty()
             }
-            state.error() != null -> renderError(state.error()!!)
+            state.error != null -> renderError(state.error!!)
         }
     }
 
