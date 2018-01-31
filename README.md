@@ -2,6 +2,7 @@
 
 ## Features
 
+- 100% **Kotlin** code!
 - **MVVM** design pattern
 - Reactive approach and state management with **RxJava2** / **RxAndroid** / **RxBinding** (thanks Jake Wharton!)
 - DI with **Dagger2**
