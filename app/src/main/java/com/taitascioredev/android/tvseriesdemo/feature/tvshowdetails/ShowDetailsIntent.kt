@@ -1,12 +1,12 @@
 package com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails
 
 import com.google.auto.value.AutoValue
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviIntent
+import com.taitascioredev.android.tvseriesdemo.presentation.base.Intent
 
 /**
  * Created by rrtatasciore on 25/01/18.
  */
-interface ShowDetailsIntent : MviIntent {
+interface ShowDetailsIntent : Intent {
 
     @AutoValue
     abstract class InitialIntent : ShowDetailsIntent {

@@ -1,7 +1,7 @@
 package com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewstate
 
 import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviViewState
+import com.taitascioredev.android.tvseriesdemo.presentation.base.ViewState
 
 /**
  * Created by rrtatasciore on 24/01/18.
@@ -10,7 +10,7 @@ data class ShowsListViewState(
         val loading: Boolean,
         val shows: List<MovieDbTvShow>?,
         val error: Throwable?
-) : MviViewState {
+) : ViewState {
 
     companion object {
         fun create(loading: Boolean, shows: List<MovieDbTvShow>?, error: Throwable?): ShowsListViewState {

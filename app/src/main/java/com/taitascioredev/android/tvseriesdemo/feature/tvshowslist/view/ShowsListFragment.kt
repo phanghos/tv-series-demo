@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.view.adapter.
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewmodel.ShowsListViewModel
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewmodel.ShowsListViewModelFactory
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewstate.ShowsListViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviView
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
 import com.taitascioredev.android.tvseriesdemo.util.baseActivity
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
@@ -29,7 +28,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 25/01/18.
  */
-class ShowsListFragment : Fragment(), MviView<ShowsListIntent, ShowsListViewState> {
+class ShowsListFragment : Fragment(), BaseView<ShowsListIntent, ShowsListViewState> {
 
     companion object {
         private val TAG = ShowsListFragment::class.java.simpleName

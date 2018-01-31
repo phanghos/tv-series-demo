@@ -6,7 +6,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.ShowsListActi
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.ShowsListIntent
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.ShowsListStateReducer
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.viewstate.ShowsListViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviViewModel
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.subjects.PublishSubject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class ShowsListViewModel @Inject constructor(
         private val actionProcessor: ShowsListActionProcessor,
         private val stateReducer: ShowsListStateReducer
-) : ViewModel(), MviViewModel<ShowsListIntent> {
+) : ViewModel(), BaseViewModel<ShowsListIntent> {
 
     private val intentSubject = PublishSubject.create<ShowsListIntent>()
 

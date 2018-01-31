@@ -1,11 +1,11 @@
-package com.taitascioredev.android.tvseriesdemo.presentation.mvibase
+package com.taitascioredev.android.tvseriesdemo.presentation.base
 
 import io.reactivex.Observable
 
 /**
  * Created by rrtatasciore on 25/01/18.
  */
-interface MviView<I : MviIntent, VS: MviViewState> {
+interface BaseView<I : Intent, VS: ViewState> {
 
     fun intents(): Observable<I>
 

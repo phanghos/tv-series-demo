@@ -6,14 +6,14 @@ import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.SearchTvSho
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel.SearchTvShowsViewModel
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel.SearchTvShowsViewModelFactory
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewstate.SearchTvShowsViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviView
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
 import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
  * Created by rrtatasciore on 30/01/18.
  */
-class SearchTvShowsFragment : Fragment(), MviView<SearchTvShowsIntent, SearchTvShowsViewState> {
+class SearchTvShowsFragment : Fragment(), BaseView<SearchTvShowsIntent, SearchTvShowsViewState> {
 
     @Inject lateinit var factory: SearchTvShowsViewModelFactory
 

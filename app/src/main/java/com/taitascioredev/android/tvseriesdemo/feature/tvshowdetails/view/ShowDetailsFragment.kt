@@ -19,8 +19,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.view.adapte
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewmodel.ShowDetailsViewModel
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewmodel.ShowDetailsViewModelFactory
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewstate.ShowDetailsViewState
-import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.ShowsListIntent
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviView
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
 import com.taitascioredev.android.tvseriesdemo.util.baseActivity
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
@@ -31,7 +30,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 26/01/18.
  */
-class ShowDetailsFragment : Fragment(), MviView<ShowDetailsIntent, ShowDetailsViewState> {
+class ShowDetailsFragment : Fragment(), BaseView<ShowDetailsIntent, ShowDetailsViewState> {
 
     companion object {
 

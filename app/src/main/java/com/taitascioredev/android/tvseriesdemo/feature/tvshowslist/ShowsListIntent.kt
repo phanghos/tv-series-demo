@@ -1,11 +1,11 @@
 package com.taitascioredev.android.tvseriesdemo.feature.tvshowslist
 
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviIntent
+import com.taitascioredev.android.tvseriesdemo.presentation.base.Intent
 
 /**
  * Created by rrtatasciore on 24/01/18.
  */
-interface ShowsListIntent : MviIntent {
+interface ShowsListIntent : Intent {
 
     class InitialIntent : ShowsListIntent
 

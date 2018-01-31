@@ -1,14 +1,12 @@
 package com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import autovalue.shaded.com.`google$`.common.base.`$Predicates`.compose
-import com.facebook.soloader.SoLoader.init
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.SearchTvShowsAction
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.SearchTvShowsActionProcessor
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.SearchTvShowsIntent
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.SearchTvShowsStateReducer
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewstate.SearchTvShowsViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviViewModel
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.subjects.PublishSubject
@@ -20,7 +18,7 @@ import javax.inject.Inject
 class SearchTvShowsViewModel @Inject constructor(
         private val actionProcessor: SearchTvShowsActionProcessor,
         private val stateReducer: SearchTvShowsStateReducer
-) : ViewModel(), MviViewModel<SearchTvShowsIntent> {
+) : ViewModel(), BaseViewModel<SearchTvShowsIntent> {
 
     private var intentSubject = PublishSubject.create<SearchTvShowsIntent>()
 

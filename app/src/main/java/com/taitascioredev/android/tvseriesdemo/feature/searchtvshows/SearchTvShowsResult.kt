@@ -1,7 +1,7 @@
 package com.taitascioredev.android.tvseriesdemo.feature.searchtvshows
 
 import com.taitascioredev.android.tvseriesdemo.domain.model.MovieDbTvShow
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviResult
+import com.taitascioredev.android.tvseriesdemo.presentation.base.Result
 import com.taitascioredev.android.tvseriesdemo.util.LceStatus
 
 /**
@@ -11,7 +11,7 @@ data class SearchTvShowsResult(
         val status: LceStatus,
         val shows: List<MovieDbTvShow>?,
         val error: Throwable?
-) : MviResult {
+) : Result {
     companion object {
         fun create(status: LceStatus, shows: List<MovieDbTvShow>?, throwable: Throwable?): SearchTvShowsResult {
             return SearchTvShowsResult(status, shows, throwable)

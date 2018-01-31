@@ -6,7 +6,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.ShowDetails
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.ShowDetailsIntent
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.ShowDetailsStateReducer
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowdetails.viewstate.ShowDetailsViewState
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviViewModel
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.subjects.PublishSubject
@@ -17,7 +17,7 @@ import io.reactivex.subjects.PublishSubject
 class ShowDetailsViewModel(
         private val actionProcessor: ShowDetailsActionProcessor,
         private val stateReducer: ShowDetailsStateReducer
-) : ViewModel(), MviViewModel<ShowDetailsIntent> {
+) : ViewModel(), BaseViewModel<ShowDetailsIntent> {
 
     private val intentSubject = PublishSubject.create<ShowDetailsIntent>()
 

@@ -18,7 +18,7 @@ import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel.S
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewmodel.SearchTvShowsViewModelFactory
 import com.taitascioredev.android.tvseriesdemo.feature.searchtvshows.viewstate.SearchTvShowsViewState
 import com.taitascioredev.android.tvseriesdemo.feature.tvshowslist.view.adapter.MovieDbShowAdapter
-import com.taitascioredev.android.tvseriesdemo.presentation.mvibase.MviView
+import com.taitascioredev.android.tvseriesdemo.presentation.base.BaseView
 import com.taitascioredev.android.tvseriesdemo.util.enableUpNavigation
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -33,7 +33,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 30/01/18.
  */
-class SearchResultsActivity : AppCompatActivity(), MviView<SearchTvShowsIntent, SearchTvShowsViewState>, HasActivityInjector {
+class SearchResultsActivity : AppCompatActivity(), BaseView<SearchTvShowsIntent, SearchTvShowsViewState>, HasActivityInjector {
 
     override fun activityInjector(): AndroidInjector<Activity> {
         return injector
