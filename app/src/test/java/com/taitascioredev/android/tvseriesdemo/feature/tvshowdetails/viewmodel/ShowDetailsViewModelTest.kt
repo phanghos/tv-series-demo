@@ -46,7 +46,7 @@ class ShowDetailsViewModelTest {
         val testObserver = viewModel.states().test()
 
         // When
-        viewModel.processIntents(Observable.just(ShowDetailsIntent.InitialIntent.create(0)))
+        viewModel.processIntents(Observable.just(ShowDetailsIntent.InitialIntent(0)))
 
         // Then
         testObserver.assertValueCount(3)
@@ -65,7 +65,7 @@ class ShowDetailsViewModelTest {
         val testObserver = viewModel.states().test()
 
         // When
-        viewModel.processIntents(Observable.just(ShowDetailsIntent.InitialIntent.create(0)))
+        viewModel.processIntents(Observable.just(ShowDetailsIntent.InitialIntent(0)))
 
         // Then
         testObserver.assertValueCount(3)
@@ -85,7 +85,7 @@ class ShowDetailsViewModelTest {
         val testObserver = viewModel.states().test()
 
         // When
-        viewModel.processIntents(Observable.just(ShowDetailsIntent.LoadIntent.create(0)))
+        viewModel.processIntents(Observable.just(ShowDetailsIntent.LoadIntent(0)))
 
         // Then
         testObserver.assertValueCount(3)
@@ -104,7 +104,7 @@ class ShowDetailsViewModelTest {
         val testObserver = viewModel.states().test()
 
         // When
-        viewModel.processIntents(Observable.just(ShowDetailsIntent.LoadIntent.create(0)))
+        viewModel.processIntents(Observable.just(ShowDetailsIntent.LoadIntent(0)))
 
         // Then
         testObserver.assertValueCount(3)
